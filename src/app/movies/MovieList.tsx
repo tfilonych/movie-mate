@@ -1,20 +1,16 @@
 import Image from 'next/image';
-import { fetchMoviesWithQuery } from '../lib/data';
+import { Movie } from '../lib/definitions';
 
-const TMDB_API_IMG = process.env.TMDB_API_IMG;
+const TMDB_API_IMG = 'https://media.themoviedb.org/t/p/w300_and_h450_bestv2';
 
-const MovieList = async ({
-  query,
-  currentPage,
-}: {
-  query: string;
-  currentPage: number;
-}) => {
-  const movies = await fetchMoviesWithQuery(query, currentPage);
+type MovieListProps = {
+  data: Movie[];
+};
 
+const MovieList = ({ data }: MovieListProps) => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mt-4">
-      {movies.map((movie) => (
+      {data.map((movie) => (
         <div key={movie.id} className="flex flex-col cursor-pointer">
           <Image
             alt={movie.title}
