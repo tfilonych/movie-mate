@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import Search from '../components/search/Search';
-import { fetchMoviesWithQuery } from '../lib/data';
+import { fetchCollectionWithQuery } from '../lib/data';
 
 const MovieListWithScroll = dynamic(() => import('./MovieListWithScroll'), {
   ssr: false,
@@ -17,7 +17,7 @@ const MoviePage = async ({
 }) => {
   const query = searchParams?.query || 'a';
   const currentPage = Number(searchParams?.page) || 1;
-  const { results: initialMovies } = await fetchMoviesWithQuery(
+  const { results: initialMovies } = await fetchCollectionWithQuery(
     query,
     currentPage
   );

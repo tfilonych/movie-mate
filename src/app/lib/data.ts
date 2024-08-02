@@ -5,7 +5,7 @@ import { Movie, ApiResponse } from '../lib/definitions';
 const API = process.env.TMDB_API;
 const API_KEY = process.env.TMDB_API_KEY;
 
-export const fetchMoviesWithQuery = async (
+export const fetchCollectionWithQuery = async (
   query: string,
   page: number
 ): Promise<ApiResponse<Movie>> => {

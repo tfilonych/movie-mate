@@ -2,7 +2,7 @@
 
 import { ComponentType, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { fetchMoviesWithQuery } from '../lib/data';
+import { fetchCollectionWithQuery } from '../lib/data';
 
 interface InfiniteScrollProps<T> {
   initialData: T[];
@@ -27,7 +27,7 @@ export function withInfiniteScroll<T>(
 
     async function loadMoreData() {
       const nextPage = page + 1;
-      const { results, total_pages } = await fetchMoviesWithQuery(
+      const { results, total_pages } = await fetchCollectionWithQuery(
         query,
         nextPage
       );
