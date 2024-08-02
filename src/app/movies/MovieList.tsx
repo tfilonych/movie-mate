@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { Movie } from '../lib/definitions';
 
-const TMDB_API_IMG = 'https://media.themoviedb.org/t/p/w300_and_h450_bestv2';
+const TMDB_API_IMG = process.env.NEXT_PUBLIC_TMDB_API_IMG;
 
 type MovieListProps = {
   data: Movie[];
