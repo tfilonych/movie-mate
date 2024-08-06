@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Open_Sans } from 'next/font/google';
 import './globals.css';
 import Header from './components/Header';
+import AuthProvider from './context/AuthProvider';
 
 const o_sans = Open_Sans({
   weight: '400',
@@ -22,8 +23,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${o_sans.className} bg-slate-800 text-white`}>
-        <Header />
-        <main className="container sm mx-auto">{children}</main>
+        <AuthProvider>
+          <Header />
+          <main className="container sm mx-auto">{children}</main>
+        </AuthProvider>
       </body>
     </html>
   );

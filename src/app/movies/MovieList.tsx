@@ -5,13 +5,14 @@ const TMDB_API_IMG = process.env.NEXT_PUBLIC_TMDB_API_IMG;
 
 type MovieListProps = {
   data: Movie[];
+  itemClassName?: string;
 };
 
-const MovieList = ({ data }: MovieListProps) => {
+const MovieList = ({ data, itemClassName = '' }: MovieListProps) => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mt-4">
+    <>
       {data.map((movie) => (
-        <div key={movie.id} className="flex flex-col cursor-pointer">
+        <div key={movie.id} className={`flex flex-col cursor-pointer ${itemClassName}`}>
           <Image
             alt={movie.title}
             width={500}
@@ -23,7 +24,7 @@ const MovieList = ({ data }: MovieListProps) => {
           </div>
         </div>
       ))}
-    </div>
+    </>
   );
 };
 

@@ -1,7 +1,9 @@
+'use server';
 import { Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import Search from '../components/search/Search';
 import { fetchCollectionWithQuery } from '../lib/data';
+import { VerticalInfiniteScrollMovieList } from './MovieListWithScroll';
 
 const MovieListWithScroll = dynamic(() => import('./MovieListWithScroll'), {
   ssr: false,
@@ -26,7 +28,7 @@ const MoviePage = async ({
     <>
       <Search placeholder={'Search...'} />
       <Suspense key={query + currentPage} fallback={<div>Loading...</div>}>
-        <MovieListWithScroll
+        <VerticalInfiniteScrollMovieList
           initialData={initialMovies}
           initialPage={currentPage}
           initialQuery={query}

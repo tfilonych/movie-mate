@@ -1,22 +1,47 @@
+'use client';
 import Link from 'next/link';
-import React from 'react';
+import { usePathname } from 'next/navigation';
 
-function Navigation() {
+const Navigation = () => {
+  const pathname = usePathname();
+  const isActive = (href: string) => pathname === href;
+
   return (
     <nav>
-      <ul className="flex gap-6">
+      <ul className="flex gap-6 text-xl font-extrabold">
         <li>
-          <Link href="/movies">Movies</Link>
+          <Link
+            href="/movies"
+            className={`hover:text-red-500 ${
+              isActive('/movies') ? 'text-red-500' : '' // TODO: move to separate component
+            }`}
+          >
+            Movies
+          </Link>
         </li>
         <li>
-          <Link href="/shows">TV Shows</Link>
+          <Link
+            href="/shows"
+            className={`hover:text-red-500 ${
+              isActive('/shows') ? 'text-red-500' : ''
+            }`}
+          >
+            TV Shows
+          </Link>
         </li>
         <li>
-          <Link href="/episods">Episods</Link>
+          <Link
+            href="/episodes"
+            className={`hover:text-red-500 ${
+              isActive('/episodes') ? 'text-red-500' : ''
+            }`}
+          >
+            Episods
+          </Link>
         </li>
       </ul>
     </nav>
   );
-}
+};
 
 export default Navigation;

@@ -4,11 +4,11 @@ import { ComponentType, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { fetchCollectionWithQuery } from '../lib/data';
 
-interface InfiniteScrollProps<T> {
+type InfiniteScrollProps<T> = {
   initialData: T[];
   initialPage: number;
   initialQuery: string;
-}
+};
 
 export function withInfiniteScroll<T>(
   WrappedComponent: ComponentType<{ data: T[] }>
@@ -50,9 +50,8 @@ export function withInfiniteScroll<T>(
       <>
         <WrappedComponent data={data} {...props} />
         {hasMore && (
-          <div ref={ref}>
-            {/* Loader component */}
-            Loading...
+          <div ref={ref} className="flex justify-center p-4">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
           </div>
         )}
       </>
