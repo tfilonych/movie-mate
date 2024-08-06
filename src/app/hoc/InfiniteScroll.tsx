@@ -33,7 +33,7 @@ export function withInfiniteScroll<T>(
       );
       if (results.length) {
         setPage(nextPage);
-        setData((prev) => [...prev, ...results]);
+        setData((prev: any[]) => [...prev, ...results]);
         setHasMore(nextPage < total_pages);
       } else {
         setHasMore(false);
