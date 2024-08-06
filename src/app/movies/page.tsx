@@ -5,9 +5,15 @@ import Search from '../components/search/Search';
 import { fetchCollectionWithQuery } from '../lib/data';
 import { VerticalInfiniteScrollMovieList } from './MovieListWithScroll';
 
-const MovieListWithScroll = dynamic(() => import('./MovieListWithScroll'), {
-  ssr: false,
-});
+const MovieListWithScroll = dynamic(
+  () =>
+    import('./MovieListWithScroll').then(
+      (mod) => mod.VerticalInfiniteScrollMovieList
+    ),
+  {
+    ssr: false,
+  }
+);
 
 const MoviePage = async ({
   searchParams,
