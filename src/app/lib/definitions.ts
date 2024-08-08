@@ -21,3 +21,11 @@ export type ApiResponse<T> = {
   total_results: number;
   page: number;
 };
+
+export type ApiRequestParams = {
+  collection: string;
+  url: string;
+  query?: string;
+  path?: string;
+  page?: number;
+};

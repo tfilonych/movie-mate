@@ -1,11 +1,25 @@
 import Image from 'next/image';
 import { getServerSession } from 'next-auth';
+import CarouselContainer from './components/carousel/CarouselContainer';
+import Poster from './components/Poster';
 
 const Home = () => {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      Home Page content will be placed here
-    </main>
+    <>
+      <Poster />
+      <div className="container my-7">
+        <CarouselContainer
+          title="Latest movies"
+          collection="movie"
+          url="movie/top_rated"
+        />
+        <CarouselContainer
+          title="Upcoming movies"
+          collection="movie"
+          url="movie/upcoming"
+        />
+      </div>
+    </>
   );
 };
 

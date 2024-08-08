@@ -1,17 +1,40 @@
 'use server';
 
-import { Movie, ApiResponse } from '../lib/definitions';
+import { Movie, ApiResponse, ApiRequestParams } from '../lib/definitions';
 
 const API = process.env.TMDB_API;
 const API_KEY = process.env.TMDB_API_KEY;
 
-export const fetchCollectionWithQuery = async (
-  query: string,
-  page: number
+type Collections = Movie;
+
+export const fetchCollection = async ({
+  collection,
+  url,
+  query,
+  page,
+  path,
+}: ApiRequestParams): Promise<ApiResponse<Collections>> => {
+  // prepare API params
+  const searchQuery = query ? `&query=${encodeURIComponent(query)}` : '';
+  const currentPage = page ? `&page=${page}` : '';
+  const withPath = path ? `/${path}` : path;
+  const params = `?api_key=${API_KEY}${searchQuery}${currentPage}`;
+
+  // prepare URL with params
+  const fullPath = `${API}/${url}${params}`;
+  console.log('url is ' + fullPath);
+
+  const response = await fetch(fullPath);
+  const data: ApiResponse<Movie> = await response.json();
+
+  return data;
+};
+
+export const fetchSimpleData = async (
+  path: string
 ): Promise<ApiResponse<Movie>> => {
-  const url = `${API}?api_key=${API_KEY}&query=${encodeURIComponent(
-    query
-  )}&page=${page}`;
+  const url = `${API}?api_key=${API_KEY}/${path}`;
+
   const response = await fetch(url);
   const data: ApiResponse<Movie> = await response.json();
 

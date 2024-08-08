@@ -2,18 +2,22 @@
 
 import { ComponentType, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { fetchCollectionWithQuery } from '../lib/data';
+import { fetchCollection } from '../lib/data';
 
 type InfiniteScrollProps<T> = {
+  collection: string;
+  url: string;
   initialData: T[];
   initialPage: number;
-  initialQuery: string;
+  initialQuery?: string;
 };
 
 export function withInfiniteScroll<T>(
   WrappedComponent: ComponentType<{ data: T[] }>
 ) {
   return function WithInfiniteScroll({
+    collection,
+    url,
     initialData,
     initialPage,
     initialQuery,
@@ -21,16 +25,20 @@ export function withInfiniteScroll<T>(
   }: InfiniteScrollProps<T>) {
     const [data, setData] = useState<T[]>(initialData);
     const [page, setPage] = useState(initialPage);
-    const [query] = useState(initialQuery);
+    const [query, setQuery] = useState(initialQuery);
     const [hasMore, setHasMore] = useState(true);
     const [ref, inView] = useInView();
 
     async function loadMoreData() {
       const nextPage = page + 1;
-      const { results, total_pages } = await fetchCollectionWithQuery(
+
+      const { results, total_pages } = await fetchCollection({
+        collection: 'movie',
+        url,
         query,
-        nextPage
-      );
+        page: nextPage,
+      });
+      console.log('total_pages ' + total_pages);
       if (results.length) {
         setPage(nextPage);
         setData((prev: any[]) => [...prev, ...results]);
@@ -41,6 +49,8 @@ export function withInfiniteScroll<T>(
     }
 
     useEffect(() => {
+      console.log(inView);
+      console.log('hasMore ' + hasMore);
       if (inView && hasMore) {
         loadMoreData();
       }
@@ -51,7 +61,7 @@ export function withInfiniteScroll<T>(
         <WrappedComponent data={data} {...props} />
         {hasMore && (
           <div ref={ref} className="flex justify-center p-4">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
+            <div className="animate-spin rounded-full border-b-2 border-gray-900"></div>
           </div>
         )}
       </>
