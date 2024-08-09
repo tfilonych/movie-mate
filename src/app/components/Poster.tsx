@@ -7,9 +7,8 @@ function Poster() {
     <div className="relative w-full h-96">
       <Image
         alt="poster"
-        src="https://media.themoviedb.org/t/p/w1920_and_h600_multi_faces_filter(duotone,00192f,00baff)/hoVj2lYW3i7oMd1o7bPQRZd1lk1.jpg"
-        width={1920}
-        height={600}
+        src="/poster.jpg"
+        fill
         className="absolute top-0 left-0 w-full h-full object-cover"
       />
       <div className="absolute inset-0 flex flex-col justify-center bg-gradient-to-t from-black via-transparent to-transparent text-white p-10">
