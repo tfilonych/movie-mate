@@ -12,11 +12,13 @@ const Home = () => {
           title="Latest movies"
           collection="movie"
           url="movie/top_rated"
+          layout="horizontal"
         />
         <CarouselContainer
           title="Upcoming movies"
           collection="movie"
           url="movie/upcoming"
+          layout="horizontal"
         />
       </div>
     </>

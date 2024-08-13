@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${o_sans.className} bg-slate-800 text-white`}>
+      <body className={`${o_sans.className} bg-slate-800 text-white w-full`}>
         <AuthProvider>
           <Header />
           <main className="container sm mx-auto my-12">{children}</main>

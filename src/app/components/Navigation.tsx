@@ -1,44 +1,45 @@
 'use client';
+
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useEffect } from 'react';
 
-const Navigation = () => {
+type NavigationProps = {
+  setIsOpen: (isOpen: boolean) => void;
+};
+
+const navLinks = [
+  { href: '/movies', title: 'Movies' },
+  { href: '/shows', title: 'TV Shows' },
+  { href: '/episods', title: 'Episods' },
+];
+
+const Navigation = ({ setIsOpen }: NavigationProps) => {
   const pathname = usePathname();
   const isActive = (href: string) => pathname === href;
 
+  useEffect(() => {
+    console.log('pathname has been changed!');
+    setIsOpen(false);
+  }, [pathname]);
+
   return (
     <nav>
-      <ul className="flex gap-6 text-xl font-extrabold">
-        <li>
-          <Link
-            href="/movies"
-            className={`hover:text-red-500 ${
-              isActive('/movies') ? 'text-red-500' : '' // TODO: move to separate component
-            }`}
-          >
-            Movies
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/shows"
-            className={`hover:text-red-500 ${
-              isActive('/shows') ? 'text-red-500' : ''
-            }`}
-          >
-            TV Shows
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/episodes"
-            className={`hover:text-red-500 ${
-              isActive('/episodes') ? 'text-red-500' : ''
-            }`}
-          >
-            Episods
-          </Link>
-        </li>
+      <ul className="flex flex-col text-xl md:flex-row gap-4 md:gap-6 p-4">
+        {navLinks.map((link) => (
+          <li key={link.href}>
+            <Link
+              href={link.href}
+              className={`relative inline-block transition-all duration-500 ease-in-out 
+              ${
+                isActive(link.href) ? 'text-red-500' : ''
+              } after:absolute after:left-0 after:right-0 after:bottom-0 after:h-[2px] after:bg-red-500
+              after:transform after:scale-x-0 after:transition-transform after:duration-500 after:ease-in-out hover:after:scale-x-100`}
+            >
+              {link.title}
+            </Link>
+          </li>
+        ))}
       </ul>
     </nav>
   );

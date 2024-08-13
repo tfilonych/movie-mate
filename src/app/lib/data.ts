@@ -17,12 +17,10 @@ export const fetchCollection = async ({
   // prepare API params
   const searchQuery = query ? `&query=${encodeURIComponent(query)}` : '';
   const currentPage = page ? `&page=${page}` : '';
-  const withPath = path ? `/${path}` : path;
   const params = `?api_key=${API_KEY}${searchQuery}${currentPage}`;
 
   // prepare URL with params
   const fullPath = `${API}/${url}${params}`;
-  console.log('url is ' + fullPath);
 
   const response = await fetch(fullPath);
   const data: ApiResponse<Movie> = await response.json();

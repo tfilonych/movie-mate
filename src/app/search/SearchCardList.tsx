@@ -19,12 +19,15 @@ const SearchCardList = ({ data }: MovieListProps) => {
       <div className="flex flex-col gap-4">
         {data.map((card) => (
           <div key={card.id} className="flex gap-4 overflow-hidden my-2 py-3">
-            <ImageWrapper
-              src={card.backdrop_path}
-              width={355}
-              height={200}
-              title={card.title}
-            />
+            <div className="relative bg-slate-700 flex-shrink-0">
+              <ImageWrapper
+                src={card.backdrop_path}
+                width={355}
+                height={200}
+                title={card.title}
+                layout="horizontal"
+              />
+            </div>
             <CardInfo title={card.title} description={card.overview} />
           </div>
         ))}

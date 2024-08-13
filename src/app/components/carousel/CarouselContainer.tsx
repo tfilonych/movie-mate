@@ -1,26 +1,17 @@
 import { Suspense } from 'react';
-import dynamic from 'next/dynamic';
 import { fetchCollection } from './../../lib/data';
-import { HorizontalInfiniteScrollCarousel } from './CarouselWithScroll';
-
-const CarouselWithScroll = dynamic(
-  () =>
-    import('./CarouselWithScroll').then(
-      (mod) => mod.HorizontalInfiniteScrollCarousel
-    ),
-  {
-    ssr: false,
-  }
-);
+import CarouselCardList from './CarouselCardList';
 
 const CarouselContainer = async ({
   title,
   collection,
   url,
+  layout,
 }: {
   title: string;
   collection: string;
   url: string;
+  layout: string;
 }) => {
   const currentPage = 1;
   const { results: initialData } = await fetchCollection({
@@ -33,7 +24,7 @@ const CarouselContainer = async ({
     <>
       <h2 className="text-xl font-bold mb-4">{title}</h2>
       <Suspense key={currentPage} fallback={<div>Loading...</div>}>
-        <HorizontalInfiniteScrollCarousel
+        <CarouselCardList
           collection={collection}
           url={url}
           initialData={initialData}

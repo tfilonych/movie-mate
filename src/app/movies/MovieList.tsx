@@ -1,7 +1,9 @@
-import Image from 'next/image';
-import { Movie } from '../lib/definitions';
+'use client';
 
-const TMDB_API_IMG = process.env.NEXT_PUBLIC_TMDB_API_IMG;
+import { Movie } from '../lib/definitions';
+import ImageWrapper from '../components/ImageWrapper';
+import { withInfiniteScroll } from '../hoc/InfiniteScroll';
+import withVerticalLayout from '../hoc/withVerticalLayout';
 
 type MovieListProps = {
   data: Movie[];
@@ -14,17 +16,21 @@ const MovieList = ({ data, itemClassName = '' }: MovieListProps) => {
       {data.map((movie) => (
         <div
           key={movie.id}
-          className={`flex flex-col cursor-pointer ${itemClassName}`}
+          className={`flex flex-col justify-center align-middle gap-4 cursor-pointer ${itemClassName}`}
         >
-          <Image
-            alt={movie.title}
-            width={500}
-            height={750}
-            src={`${TMDB_API_IMG}${movie.poster_path}`}
-            className="transition duration-500 ease-in-out transform hover:scale-105"
-          />
-          <div className="p-4 flex-1 flex flex-col justify-between">
-            <h3 className="text-lg font-bold mb-2">{movie.title}</h3>
+          <div className="bg-slate-700">
+            <ImageWrapper
+              src={movie.poster_path}
+              width={500}
+              height={750}
+              title={movie.title}
+              layout="vertical"
+            />
+          </div>
+          <div className="p-2 flex-1 flex flex-col justify-between">
+            <h3 className="text-lg font-bold mb-2 text-ellipsis overflow-hidden line-clamp-1">
+              {movie.title}
+            </h3>
           </div>
         </div>
       ))}
@@ -32,4 +38,6 @@ const MovieList = ({ data, itemClassName = '' }: MovieListProps) => {
   );
 };
 
-export default MovieList;
+const MovieListContainer = withInfiniteScroll(withVerticalLayout(MovieList));
+
+export default MovieListContainer;

@@ -28,7 +28,7 @@ const SearchReasultPage = async ({
           initialData={initialMovies}
           initialPage={currentPage}
           initialQuery={query}
-        ></SearchCardListComponent>
+        />
       </Suspense>
     </>
   );
