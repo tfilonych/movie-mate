@@ -1,6 +1,6 @@
 'use client';
 
-import { Movie } from '../lib/definitions';
+import { Movie } from '../utils/definitions';
 import ImageWrapper from '../components/ImageWrapper';
 import { withInfiniteScroll } from '../hoc/InfiniteScroll';
 import withVerticalLayout from '../hoc/withVerticalLayout';
@@ -38,6 +38,6 @@ const MovieList = ({ data, itemClassName = '' }: MovieListProps) => {
   );
 };
 
-const MovieListContainer = withInfiniteScroll(withVerticalLayout(MovieList));
+const MovieListContainer = withInfiniteScroll<Movie>(withVerticalLayout(MovieList));
 
 export default MovieListContainer;

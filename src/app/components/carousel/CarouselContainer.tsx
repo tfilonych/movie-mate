@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
-import { fetchCollection } from './../../lib/data';
+import { fetchCollection } from './../../utils/data';
 import CarouselCardList from './CarouselCardList';
+import { Movie } from '@/app/utils/definitions';
 
 const CarouselContainer = async ({
   title,
@@ -14,7 +15,7 @@ const CarouselContainer = async ({
   layout: string;
 }) => {
   const currentPage = 1;
-  const { results: initialData } = await fetchCollection({
+  const { results: initialData, total_pages } = await fetchCollection<Movie>({
     collection,
     url,
     page: currentPage,
@@ -29,6 +30,7 @@ const CarouselContainer = async ({
           url={url}
           initialData={initialData}
           initialPage={currentPage}
+          totalPages={total_pages}
         />
       </Suspense>
     </>

@@ -25,7 +25,7 @@ export type ApiResponse<T> = {
 export type ApiRequestParams = {
   collection: string;
   url: string;
+  page: number;
   query?: string;
   path?: string;
-  page?: number;
 };

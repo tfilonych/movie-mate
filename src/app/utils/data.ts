@@ -1,19 +1,18 @@
 'use server';
 
-import { Movie, ApiResponse, ApiRequestParams } from '../lib/definitions';
+import { Movie, ApiResponse, ApiRequestParams } from '../utils/definitions';
 
 const API = process.env.TMDB_API;
 const API_KEY = process.env.TMDB_API_KEY;
 
 type Collections = Movie;
 
-export const fetchCollection = async ({
+export const fetchCollection = async <T>({
   collection,
   url,
-  query,
   page,
-  path,
-}: ApiRequestParams): Promise<ApiResponse<Collections>> => {
+  query,
+}: ApiRequestParams): Promise<ApiResponse<T>> => {
   // prepare API params
   const searchQuery = query ? `&query=${encodeURIComponent(query)}` : '';
   const currentPage = page ? `&page=${page}` : '';
@@ -23,7 +22,7 @@ export const fetchCollection = async ({
   const fullPath = `${API}/${url}${params}`;
 
   const response = await fetch(fullPath);
-  const data: ApiResponse<Movie> = await response.json();
+  const data: ApiResponse<T> = await response.json();
 
   return data;
 };

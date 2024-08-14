@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
-import { fetchCollection } from '../lib/data';
+import { fetchCollection } from '../utils/data';
 import SearchCardListComponent from './SearchCardList';
+import { Movie } from '../utils/definitions';
 
 const SearchReasultPage = async ({
   searchParams,
@@ -12,7 +13,7 @@ const SearchReasultPage = async ({
 }) => {
   const query = searchParams?.query || 'a';
   const currentPage = Number(searchParams?.page) || 1;
-  const { results: initialMovies } = await fetchCollection({
+  const { results: initialMovies, total_pages } = await fetchCollection<Movie>({
     collection: 'movie',
     url: 'search/movie',
     query,
@@ -28,6 +29,7 @@ const SearchReasultPage = async ({
           initialData={initialMovies}
           initialPage={currentPage}
           initialQuery={query}
+          totalPages={total_pages}
         />
       </Suspense>
     </>

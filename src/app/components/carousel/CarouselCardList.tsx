@@ -1,6 +1,6 @@
 'use client';
 
-import { Movie } from '../../lib/definitions';
+import { Movie } from '../../utils/definitions';
 import { withInfiniteScroll } from '../../hoc/InfiniteScroll';
 import withHorizontalLayout from '../../hoc/withHorizontalLayout';
 import ImageWrapper from '../../components/ImageWrapper';
@@ -31,6 +31,6 @@ const Carousel = ({ data }: MovieListProps) => {
   );
 };
 
-const CarouselCardList = withInfiniteScroll(withHorizontalLayout(Carousel));
+const CarouselCardList = withInfiniteScroll<Movie>(withHorizontalLayout(Carousel));
 
 export default CarouselCardList;

@@ -1,3 +1,4 @@
+import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 import Image from 'next/image';
 import { useState } from 'react';
 
@@ -12,7 +13,7 @@ const default_URL = {
 
 type Layout = 'vertical' | 'horizontal';
 type ImageWrapperProps = {
-  src: string;
+  src: string | StaticImport;
   width: number;
   height: number;
   title?: string;
@@ -30,13 +31,14 @@ const ImageWrapper = ({
   const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     e.currentTarget.src = default_URL[layout];
   };
+  const url = src ? `${img_URL[layout]}/${src}` : default_URL[layout];
 
   return (
     <Image
       alt={title}
       width={width}
       height={height}
-      src={`${img_URL[layout]}${src}`}
+      src={url}
       onLoad={() => setIsLoaded(true)}
       onError={handleError}
       className={`transition-all duration-200 ease-in-out transform hover:scale-105 ${

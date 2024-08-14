@@ -1,7 +1,8 @@
 'use server';
 import { Suspense } from 'react';
-import { fetchCollection } from '../lib/data';
+import { fetchCollection } from '../utils/data';
 import MovieListContainer from './MovieList';
+import { Movie } from '../utils/definitions';
 
 const MoviePage = async ({
   searchParams,
@@ -13,7 +14,8 @@ const MoviePage = async ({
 }) => {
   const query = searchParams?.query || 'a';
   const currentPage = Number(searchParams?.page) || 1;
-  const { results: initialMovies } = await fetchCollection({
+
+  const { results: initialMovies, total_pages } = await fetchCollection<Movie>({
     collection: 'movie',
     url: 'search/movie',
     query,
@@ -29,6 +31,7 @@ const MoviePage = async ({
           initialData={initialMovies}
           initialPage={currentPage}
           initialQuery={query}
+          totalPages={total_pages}
         />
       </Suspense>
     </>
