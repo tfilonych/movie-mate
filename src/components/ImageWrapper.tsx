@@ -1,15 +1,7 @@
+import { useState } from 'react';
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 import Image from 'next/image';
-import { useState } from 'react';
-
-const img_URL = {
-  horizontal: process.env.NEXT_PUBLIC_TMDB_API_IMG_HOR,
-  vertical: process.env.NEXT_PUBLIC_TMDB_API_IMG,
-};
-const default_URL = {
-  horizontal: 'http://localhost:3000/default_horizontal.jpg',
-  vertical: 'http://localhost:3000/default_vertical.jpg',
-};
+import { img_URL, default_URL } from '@/config';
 
 type Layout = 'vertical' | 'horizontal';
 type ImageWrapperProps = {
@@ -31,7 +23,7 @@ const ImageWrapper = ({
   const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     e.currentTarget.src = default_URL[layout];
   };
-  const url = src ? `${img_URL[layout]}/${src}` : default_URL[layout];
+  const url = src ? `${img_URL[layout]}${src}` : default_URL[layout];
 
   return (
     <Image

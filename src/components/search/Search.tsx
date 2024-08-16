@@ -1,8 +1,9 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 import { useSearchParams, usePathname, useRouter } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import BorderEffect from '../BorderEffect';
 
 const Search = ({ placeholder }: { placeholder: string }) => {
   const searchParams = useSearchParams();
@@ -37,13 +38,14 @@ const Search = ({ placeholder }: { placeholder: string }) => {
   }, [searchParams]);
 
   return (
-    <div className="relative flex flex-1 flex-shrink-0">
+    <div className="relative flex flex-1 flex-shrink-0 group border-2 rounded-md">
       <label htmlFor="search" className="sr-only">
         Search
       </label>
       <input
         id="search"
-        className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 pr-0 text-sm outline-2 outline-red-500 text-black placeholder:text-gray-500"
+        className="peer block w-full rounded-md py-[9px] pl-10 pr-0 text-sm outline-none
+           text-black placeholder:text-gray-500"
         placeholder={placeholder}
         onChange={(e) => {
           setQuery(e.target.value);
@@ -52,9 +54,11 @@ const Search = ({ placeholder }: { placeholder: string }) => {
         onKeyDown={handleKeyDown}
         value={query}
       />
+      <BorderEffect event="focus" utility="peer" />
       <button
         onClick={handleButtonClick}
-        className="text-md absolute right-0 top-0 transform bg-red-600 text-white px-8 h-full rounded-md hover:bg-red-500"
+        className="text-md absolute right-0 top-0 bottom-0 transform bg-red-600 text-white px-8 
+        rounded-md hover:bg-red-500"
       >
         Search
       </button>

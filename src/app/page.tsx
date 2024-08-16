@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { getServerSession } from 'next-auth';
-import CarouselContainer from './components/carousel/CarouselContainer';
-import Poster from './components/Poster';
+import CarouselContainer from '@/components/carousel/CarouselContainer';
+import Poster from '@/components/Poster';
 
 const Home = () => {
   return (

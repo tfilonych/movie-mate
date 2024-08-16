@@ -2,7 +2,8 @@
 
 import { signIn } from 'next-auth/react';
 import { useFormState } from 'react-dom';
-import { signin } from '../signIn/actions';
+import { signin } from '@/app/signIn/actions';
+import BorderEffect from './BorderEffect';
 
 const SignIn = () => {
   const [state, formAction] = useFormState(signin, {});
@@ -15,14 +16,14 @@ const SignIn = () => {
         </h2>
         <form action={formAction} className="mb-4">
           <div className="mb-4">
-            <label className="block text-white" htmlFor="username">
+            {/* <label className="block text-white" htmlFor="username">
               Username:
-            </label>
+            </label> */}
             <input
               id="username"
               name="username"
               type="text"
-              className="w-full p-2 border-slate-800 text-black border-2 text- border-solid rounded"
+              className="w-full p-2 border-slate-800 text-black border-2 text- border-solid focus:outline-slate-600 rounded"
               placeholder="Enter username"
             />
             {state.errors?.username && (
@@ -32,14 +33,14 @@ const SignIn = () => {
             )}
           </div>
           <div className="mb-4">
-            <label className="block text-white" htmlFor="password">
+            {/* <label className="block text-white" htmlFor="password">
               Password:
-            </label>
+            </label> */}
             <input
               id="password"
               name="password"
               type="password"
-              className="w-full p-2 border-slate-800 text-black border-2 border-solid rounded"
+              className="w-full p-2 border-slate-800 text-black border-2 border-solid rounded focus:outline-slate-600"
               placeholder="Enter password"
             />
             {state.errors?.password && (
@@ -53,18 +54,20 @@ const SignIn = () => {
           )}
           <button
             type="submit"
-            className="w-full bg-slate-700 hover:bg-slate-600 text-white font-bold py-2 px-4 rounded"
+            className="w-full text-white py-2 px-4 rounded group relative"
           >
             Sign in with Credentials
+            <BorderEffect utility="group" event="hover" borderColor="white" />
           </button>
         </form>
         <button
           onClick={() => {
             signIn('github', { callbackUrl: '/movies' });
           }}
-          className="w-full bg-red-600 hover:bg-red-500 text-white font-bold py-2 px-4 rounded"
+          className="flex justify-center gap-4 w-full bg-gray-600 hover:bg-gray-700 text-white py-2 px-4 rounded"
         >
-          Sign in with GitHub
+          <img src="/github_icon.svg" alt="Github icon" width={20} />
+          <div>Sign in with GitHub</div>
         </button>
       </div>
     </div>

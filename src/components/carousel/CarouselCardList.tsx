@@ -1,13 +1,18 @@
 'use client';
 
-import { Movie } from '../../utils/definitions';
-import { withInfiniteScroll } from '../../hoc/InfiniteScroll';
-import withHorizontalLayout from '../../hoc/withHorizontalLayout';
-import ImageWrapper from '../../components/ImageWrapper';
-import CardInfo from '../../components/CardInfo';
+import { Movie } from '@/libs/definitions';
+import { withInfiniteScroll } from '@/hoc/InfiniteScroll';
+import withHorizontalLayout from '@/hoc/withHorizontalLayout';
+import ImageWrapper from '@/components/ImageWrapper';
+import CardInfo from '@/components/CardInfo';
 
 type MovieListProps = {
   data: Movie[];
+};
+
+const imgSize = {
+  width: 355,
+  height: 200,
 };
 
 const Carousel = ({ data }: MovieListProps) => {
@@ -18,8 +23,8 @@ const Carousel = ({ data }: MovieListProps) => {
           <div className="relative w-56 bg-slate-700">
             <ImageWrapper
               src={card.backdrop_path}
-              width={355}
-              height={200}
+              width={imgSize.width}
+              height={imgSize.height}
               title={card.title}
               layout="horizontal"
             />
@@ -31,6 +36,8 @@ const Carousel = ({ data }: MovieListProps) => {
   );
 };
 
-const CarouselCardList = withInfiniteScroll<Movie>(withHorizontalLayout(Carousel));
+const CarouselCardList = withInfiniteScroll<Movie>(
+  withHorizontalLayout(Carousel)
+);
 
 export default CarouselCardList;

@@ -1,11 +1,12 @@
 'use client';
 
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
-import { useEffect, useRef, useState } from 'react';
 import Logo from './Logo';
 import Navigation from './Navigation';
 import SignOutButton from './SignOutButton';
+import BorderEffect from './BorderEffect';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -64,7 +65,7 @@ const Header = () => {
       </div>
 
       <div
-        className={`relative z-10 w-screen md:w-auto md:static md:flex items-center 
+        className={`relative z-10 w-screen md:w-auto md:static md:flex flex-1 items-center 
         transition-transform duration-300 md:transform-none bg-slate-800/80
         ${isOpen ? 'transform translate-x-0' : 'transform -translate-x-full'}`}
         ref={ref}
@@ -78,11 +79,7 @@ const Header = () => {
               href="/signIn"
               className="group relative px-6 text-lg py-2 text-white"
             >
-              <span className="absolute inset-0 border-2 border-white pointer-events-none"></span>
-              <span className="ease absolute left-0 top-0 h-0 w-0 border-t-2 border-red-600 transition-all duration-300 group-hover:w-full"></span>
-              <span className="ease absolute right-0 top-0 h-0 w-0 border-r-2 border-red-600 transition-all duration-300 group-hover:h-full"></span>
-              <span className="ease absolute bottom-0 right-0 h-0 w-0 border-b-2 border-red-600 transition-all duration-300 group-hover:w-full"></span>
-              <span className="ease absolute bottom-0 left-0 h-0 w-0 border-l-2 border-red-600 transition-all duration-300 group-hover:h-full"></span>
+              <BorderEffect utility="group" event="hover" borderColor="white" />
               Sign In
             </Link>
           )}

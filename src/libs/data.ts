@@ -1,6 +1,6 @@
 'use server';
 
-import { Movie, ApiResponse, ApiRequestParams } from '../utils/definitions';
+import { Movie, ApiResponse, ApiRequestParams } from './definitions';
 
 const API = process.env.TMDB_API;
 const API_KEY = process.env.TMDB_API_KEY;
@@ -23,17 +23,6 @@ export const fetchCollection = async <T>({
 
   const response = await fetch(fullPath);
   const data: ApiResponse<T> = await response.json();
-
-  return data;
-};
-
-export const fetchSimpleData = async (
-  path: string
-): Promise<ApiResponse<Movie>> => {
-  const url = `${API}?api_key=${API_KEY}/${path}`;
-
-  const response = await fetch(url);
-  const data: ApiResponse<Movie> = await response.json();
 
   return data;
 };

@@ -1,14 +1,16 @@
 'use client';
 
 import { signOut } from 'next-auth/react';
+import BorderEffect from './BorderEffect';
 
 const SignOutButton = () => {
   return (
     <button
-      className="ml-auto cursor-pointer px-6 py-2 border-2 border-solid hover:border-red-500"
+      className="group relative ml-auto cursor-pointer px-6 py-2"
       onClick={() => signOut()}
     >
       Sign Out
+      <BorderEffect utility="group" event="hover" borderColor="white" />
     </button>
   );
 };

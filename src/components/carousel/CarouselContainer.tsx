@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
-import { fetchCollection } from './../../utils/data';
+import { fetchCollection } from '@/libs/data';
 import CarouselCardList from './CarouselCardList';
-import { Movie } from '@/app/utils/definitions';
+import { Movie } from '@/libs/definitions';
 
 const CarouselContainer = async ({
   title,
