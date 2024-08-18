@@ -1,6 +1,7 @@
 'use client';
 
 import { signIn } from 'next-auth/react';
+import Image from 'next/image';
 import { useFormState } from 'react-dom';
 import { signin } from '@/app/signIn/actions';
 import BorderEffect from './BorderEffect';
@@ -9,9 +10,9 @@ const SignIn = () => {
   const [state, formAction] = useFormState(signin, {});
 
   return (
-    <div className="flex justify-center items-center mt-36">
-      <div className="bg-slate-800 p-5 rounded shadow-md w-96 border-2 border-solid border-slate-600">
-        <h2 className="text-2xl font-bold mb-4 text-white text-center">
+    <div className="mt-36 flex items-center justify-center">
+      <div className="w-96 rounded border-2 border-solid border-slate-600 bg-slate-800 p-5 shadow-md">
+        <h2 className="mb-4 text-center text-2xl font-bold text-white">
           Sign In
         </h2>
         <form action={formAction} className="mb-4">
@@ -23,11 +24,11 @@ const SignIn = () => {
               id="username"
               name="username"
               type="text"
-              className="w-full p-2 border-slate-800 text-black border-2 text- border-solid focus:outline-slate-600 rounded"
+              className="text- w-full rounded border-2 border-solid border-slate-800 p-2 text-black focus:outline-slate-600"
               placeholder="Enter username"
             />
             {state.errors?.username && (
-              <p className="text-red-500 text-sm mt-1">
+              <p className="mt-1 text-sm text-red-500">
                 {state.errors.username[0]}
               </p>
             )}
@@ -40,21 +41,21 @@ const SignIn = () => {
               id="password"
               name="password"
               type="password"
-              className="w-full p-2 border-slate-800 text-black border-2 border-solid rounded focus:outline-slate-600"
+              className="w-full rounded border-2 border-solid border-slate-800 p-2 text-black focus:outline-slate-600"
               placeholder="Enter password"
             />
             {state.errors?.password && (
-              <p className="text-red-500 text-sm mt-1">
+              <p className="mt-1 text-sm text-red-500">
                 {state.errors.password[0]}
               </p>
             )}
           </div>
           {state.errors?._form && (
-            <p className="text-red-500 text-sm mb-2">{state.errors._form[0]}</p>
+            <p className="mb-2 text-sm text-red-500">{state.errors._form[0]}</p>
           )}
           <button
             type="submit"
-            className="w-full text-white py-2 px-4 rounded group relative"
+            className="group relative w-full rounded px-4 py-2 text-white"
           >
             Sign in with Credentials
             <BorderEffect utility="group" event="hover" borderColor="white" />
@@ -64,9 +65,9 @@ const SignIn = () => {
           onClick={() => {
             signIn('github', { callbackUrl: '/movies' });
           }}
-          className="flex justify-center gap-4 w-full bg-gray-600 hover:bg-gray-700 text-white py-2 px-4 rounded"
+          className="flex w-full justify-center gap-4 rounded bg-gray-600 px-4 py-2 text-white hover:bg-gray-700"
         >
-          <img src="/github_icon.svg" alt="Github icon" width={20} />
+          <Image src="/github_icon.svg" alt="Github icon" width={20} />
           <div>Sign in with GitHub</div>
         </button>
       </div>

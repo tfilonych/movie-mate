@@ -1,5 +1,3 @@
-import { InfiniteQueryObserverOptions } from '@tanstack/react-query';
-
 export type Movie = {
   adult: boolean;
   backdrop_path: string;
@@ -39,9 +37,5 @@ export type InfiniteScrollProps<T> = {
   initialPage: number;
   totalPages: number;
   initialQuery?: string;
-  queryKey: string[];
-  // queryFnOptions?: Omit<
-  //   InfiniteQueryObserverOptions<ApiResponse<T>, unknown, T[], T[], string[]>,
-  //   'queryKey' | 'queryFn' | 'getNextPageParam' | 'initialData'
-  // >;
+  queryKey?: string[];
 };

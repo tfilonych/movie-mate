@@ -4,16 +4,16 @@ import Search from './search/Search';
 
 function Poster() {
   return (
-    <div className="relative w-full h-96">
+    <div className="relative h-96 w-full">
       <Image
         alt="poster"
         src="/poster.jpg"
         fill
-        className="absolute top-0 left-0 w-full h-full object-cover"
+        className="absolute left-0 top-0 h-full w-full object-cover"
       />
-      <div className="absolute inset-0 flex flex-col justify-center bg-gradient-to-t from-black via-transparent to-transparent text-white p-10">
+      <div className="absolute inset-0 flex flex-col justify-center bg-gradient-to-t from-black via-transparent to-transparent p-10 text-white">
         <header className="mb-4">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold">
+          <h1 className="text-3xl font-bold sm:text-4xl lg:text-5xl">
             Welcome.
           </h1>
         </header>

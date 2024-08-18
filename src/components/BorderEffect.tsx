@@ -1,5 +1,3 @@
-import { ReactElement } from 'react';
-
 type BorderEffectProps = {
   event: string;
   utility: string;

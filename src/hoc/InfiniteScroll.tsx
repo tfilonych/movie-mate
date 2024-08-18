@@ -6,7 +6,7 @@ import { InfiniteScrollProps } from '@/libs/definitions';
 import { ComponentType } from 'react';
 
 export function withInfiniteScroll<T>(
-  WrappedComponent: ComponentType<{ data: T[] }>
+  WrappedComponent: ComponentType<{ data: T[] }>,
 ) {
   return function WithInfiniteScroll(props: InfiniteScrollProps<T>) {
     const { ref, allData, isFetchingNextPage, isLoading, isError } =

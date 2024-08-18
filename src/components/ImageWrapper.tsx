@@ -33,7 +33,7 @@ const ImageWrapper = ({
       src={url}
       onLoad={() => setIsLoaded(true)}
       onError={handleError}
-      className={`transition-all duration-200 ease-in-out transform hover:scale-105 ${
+      className={`transform transition-all duration-200 ease-in-out hover:scale-105 ${
         isLoaded ? '' : 'blur'
       }`}
     />

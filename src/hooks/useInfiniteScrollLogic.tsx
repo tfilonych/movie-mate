@@ -7,7 +7,7 @@ import { fetchCollection } from '@/libs/data';
 import { InfiniteScrollProps } from '@/libs/definitions';
 
 const useInfiniteScrollLogic = <T,>({
-//   queryKey,
+  //   queryKey,
   collection,
   url,
   initialData,

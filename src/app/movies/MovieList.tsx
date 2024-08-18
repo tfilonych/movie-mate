@@ -19,8 +19,8 @@ const MovieList = ({ data }: MovieListProps) => {
   return (
     <>
       {data.map((movie) => (
-        <div key={movie.id} className="flex flex-col cursor-pointer">
-          <div className="bg-slate-700 relative">
+        <div key={movie.id} className="flex cursor-pointer flex-col">
+          <div className="relative bg-slate-700">
             <ImageWrapper
               src={movie.poster_path}
               width={imgSize.width}
@@ -37,7 +37,7 @@ const MovieList = ({ data }: MovieListProps) => {
 };
 
 const MovieListContainer = withInfiniteScroll<Movie>(
-  withVerticalLayout(MovieList)
+  withVerticalLayout(MovieList),
 );
 
 export default MovieListContainer;

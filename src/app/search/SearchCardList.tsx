@@ -18,13 +18,13 @@ const imgSize = {
 const SearchCardList = ({ data }: MovieListProps) => {
   return (
     <div className="container mx-auto px-4">
-      <div className="text-xl border-spacing-2 border-2 py-1 w-full text-center text-white">
+      <div className="w-full border-spacing-2 border-2 py-1 text-center text-xl text-white">
         Search Results:
       </div>
       <div className="flex flex-col gap-4">
         {data.map((card) => (
-          <div key={card.id} className="flex gap-4 overflow-hidden my-2 py-3">
-            <div className="relative bg-slate-700 flex-shrink-0">
+          <div key={card.id} className="my-2 flex gap-4 overflow-hidden py-3">
+            <div className="relative flex-shrink-0 bg-slate-700">
               <ImageWrapper
                 src={card.backdrop_path}
                 width={imgSize.width}
@@ -42,7 +42,7 @@ const SearchCardList = ({ data }: MovieListProps) => {
 };
 
 const SearchCardListComponent = withInfiniteScroll(
-  withHorizontalLayout(SearchCardList)
+  withHorizontalLayout(SearchCardList),
 );
 
 export default SearchCardListComponent;

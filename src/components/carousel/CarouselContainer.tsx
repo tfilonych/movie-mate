@@ -7,7 +7,6 @@ const CarouselContainer = async ({
   title,
   collection,
   url,
-  layout,
 }: {
   title: string;
   collection: string;
@@ -23,7 +22,7 @@ const CarouselContainer = async ({
 
   return (
     <>
-      <h2 className="text-xl font-bold mb-4">{title}</h2>
+      <h2 className="mb-4 text-xl font-bold">{title}</h2>
       <Suspense key={currentPage} fallback={<div>Loading...</div>}>
         <CarouselCardList
           collection={collection}

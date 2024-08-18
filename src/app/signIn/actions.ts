@@ -1,4 +1,3 @@
-import { useFormState } from 'react-dom';
 import { signIn } from 'next-auth/react';
 import { signinSchema } from './signinSchema';
 
@@ -12,7 +11,7 @@ type FormState = {
 
 export const signin = async (
   prevState: FormState | undefined,
-  formData: FormData
+  formData: FormData,
 ): Promise<FormState> => {
   // Validate form data
   const validatedFields = signinSchema.safeParse({
@@ -45,7 +44,7 @@ export const signin = async (
 
     // Sign in successful
     return {};
-  } catch (error) {
+  } catch {
     return {
       errors: {
         _form: ['An error occurred. Please try again.'],

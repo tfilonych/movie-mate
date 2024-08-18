@@ -1,4 +1,4 @@
- Train nextJS Project
+Train nextJS Project
 
 ## Getting Started
 

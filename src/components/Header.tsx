@@ -36,38 +36,36 @@ const Header = () => {
   }, [ref]);
 
   return (
-    <header className="flex flex-col items-center relative p-4 md:flex-row md:justify-between max-h-14 sm:p-9">
-      <div className="flex justify-between w-full md:w-auto">
+    <header className="relative flex max-h-14 flex-col items-center p-4 sm:p-9 md:flex-row md:justify-between">
+      <div className="flex w-full justify-between md:w-auto">
         <Link href="/">
           <Logo />
         </Link>
         <button
           onClick={handleClick}
           ref={hamburgerMenu}
-          className="relative z-10 flex flex-col justify-center items-center md:hidden"
+          className="relative z-10 flex flex-col items-center justify-center md:hidden"
         >
           <span
-            className={`bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${
-              isOpen ? 'rotate-45 translate-y-1' : '-translate-y-0.5'
+            className={`block h-0.5 w-6 rounded-sm bg-white transition-all duration-300 ease-out ${
+              isOpen ? 'translate-y-1 rotate-45' : '-translate-y-0.5'
             }`}
           ></span>
           <span
-            className={`bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm my-0.5 ${
+            className={`my-0.5 block h-0.5 w-6 rounded-sm bg-white transition-all duration-300 ease-out ${
               isOpen ? 'opacity-0' : 'opacity-100'
             }`}
           ></span>
           <span
-            className={`bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${
-              isOpen ? '-rotate-45 -translate-y-1' : 'translate-y-0.5'
+            className={`block h-0.5 w-6 rounded-sm bg-white transition-all duration-300 ease-out ${
+              isOpen ? '-translate-y-1 -rotate-45' : 'translate-y-0.5'
             }`}
           ></span>
         </button>
       </div>
 
       <div
-        className={`relative z-10 w-screen md:w-auto md:static md:flex flex-1 items-center 
-        transition-transform duration-300 md:transform-none bg-slate-800/80
-        ${isOpen ? 'transform translate-x-0' : 'transform -translate-x-full'}`}
+        className={`relative z-10 w-screen flex-1 items-center bg-slate-800/80 transition-transform duration-300 md:static md:flex md:w-auto md:transform-none ${isOpen ? 'translate-x-0 transform' : '-translate-x-full transform'}`}
         ref={ref}
       >
         <Navigation setIsOpen={setIsOpen} />
@@ -77,7 +75,7 @@ const Header = () => {
           ) : (
             <Link
               href="/signIn"
-              className="group relative px-6 text-lg py-2 text-white"
+              className="group relative px-6 py-2 text-lg text-white"
             >
               <BorderEffect utility="group" event="hover" borderColor="white" />
               Sign In

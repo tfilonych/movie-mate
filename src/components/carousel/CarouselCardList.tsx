@@ -19,7 +19,7 @@ const Carousel = ({ data }: MovieListProps) => {
   return (
     <>
       {data.map((card) => (
-        <div key={card.id} className="cursor-pointer w-full">
+        <div key={card.id} className="w-full cursor-pointer">
           <div className="relative w-56 bg-slate-700">
             <ImageWrapper
               src={card.backdrop_path}
@@ -37,7 +37,7 @@ const Carousel = ({ data }: MovieListProps) => {
 };
 
 const CarouselCardList = withInfiniteScroll<Movie>(
-  withHorizontalLayout(Carousel)
+  withHorizontalLayout(Carousel),
 );
 
 export default CarouselCardList;

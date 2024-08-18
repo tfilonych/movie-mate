@@ -13,6 +13,7 @@ const Search = ({ placeholder }: { placeholder: string }) => {
 
   const handleSearch = useDebouncedCallback((query: string) => {
     const params = new URLSearchParams(searchParams);
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     query ? params.set('query', query) : params.delete('query');
 
     replace(`${pathname}?${params.toString()}`);
@@ -35,17 +36,16 @@ const Search = ({ placeholder }: { placeholder: string }) => {
     if (searchParams.get('query') !== query) {
       setQuery(searchParams.get('query') || '');
     }
-  }, [searchParams]);
+  }, [searchParams, query]);
 
   return (
-    <div className="relative flex flex-1 flex-shrink-0 group border-2 rounded-md">
+    <div className="group relative flex flex-1 flex-shrink-0 rounded-md border-2">
       <label htmlFor="search" className="sr-only">
         Search
       </label>
       <input
         id="search"
-        className="peer block w-full rounded-md py-[9px] pl-10 pr-0 text-sm outline-none
-           text-black placeholder:text-gray-500"
+        className="peer block w-full rounded-md py-[9px] pl-10 pr-0 text-sm text-black outline-none placeholder:text-gray-500"
         placeholder={placeholder}
         onChange={(e) => {
           setQuery(e.target.value);
@@ -57,8 +57,7 @@ const Search = ({ placeholder }: { placeholder: string }) => {
       <BorderEffect event="focus" utility="peer" />
       <button
         onClick={handleButtonClick}
-        className="text-md absolute right-0 top-0 bottom-0 transform bg-red-600 text-white px-8 
-        rounded-md hover:bg-red-500"
+        className="text-md absolute bottom-0 right-0 top-0 transform rounded-md bg-red-600 px-8 text-white hover:bg-red-500"
       >
         Search
       </button>

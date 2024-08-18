@@ -1,14 +1,11 @@
 'use server';
 
-import { Movie, ApiResponse, ApiRequestParams } from './definitions';
+import { ApiResponse, ApiRequestParams } from './definitions';
 
 const API = process.env.TMDB_API;
 const API_KEY = process.env.TMDB_API_KEY;
 
-type Collections = Movie;
-
 export const fetchCollection = async <T>({
-  collection,
   url,
   page,
   query,
