@@ -77,7 +77,7 @@ const Header = () => {
               href="/signIn"
               className="group relative px-6 py-2 text-lg text-white"
             >
-              <BorderEffect utility="group" event="hover" borderColor="white" />
+              <BorderEffect borderColor="white" />
               Sign In
             </Link>
           )}

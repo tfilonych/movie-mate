@@ -54,7 +54,7 @@ const Search = ({ placeholder }: { placeholder: string }) => {
         onKeyDown={handleKeyDown}
         value={query}
       />
-      <BorderEffect event="focus" utility="peer" />
+      <BorderEffect />
       <button
         onClick={handleButtonClick}
         className="text-md absolute bottom-0 right-0 top-0 transform rounded-md bg-red-600 px-8 text-white hover:bg-red-500"

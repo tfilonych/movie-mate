@@ -1,10 +1,10 @@
 'use client';
 
 import { signIn } from 'next-auth/react';
-import Image from 'next/image';
 import { useFormState } from 'react-dom';
 import { signin } from '@/app/signIn/actions';
 import BorderEffect from './BorderEffect';
+import GithubIcon from '@/assets/icons/github_icon.svg';
 
 const SignIn = () => {
   const [state, formAction] = useFormState(signin, {});
@@ -58,16 +58,16 @@ const SignIn = () => {
             className="group relative w-full rounded px-4 py-2 text-white"
           >
             Sign in with Credentials
-            <BorderEffect utility="group" event="hover" borderColor="white" />
+            <BorderEffect borderColor="border-white" />
           </button>
         </form>
         <button
           onClick={() => {
             signIn('github', { callbackUrl: '/movies' });
           }}
-          className="flex w-full justify-center gap-4 rounded bg-gray-600 px-4 py-2 text-white hover:bg-gray-700"
+          className="flex w-full items-center justify-center gap-4 rounded bg-gray-600 px-4 py-2 text-white hover:bg-gray-700"
         >
-          <Image src="/github_icon.svg" alt="Github icon" width={20} />
+          <GithubIcon />
           <div>Sign in with GitHub</div>
         </button>
       </div>

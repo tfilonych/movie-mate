@@ -7,7 +7,7 @@ import Loader from '@/components/Loader';
 const url = 'discover/movie';
 const collection = 'movie';
 
-const MoviePage = async ({
+const MoviesPage = async ({
   searchParams,
 }: {
   searchParams?: {
@@ -41,4 +41,4 @@ const MoviePage = async ({
   );
 };
 
-export default MoviePage;
+export default MoviesPage;

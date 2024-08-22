@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { Movie } from '@/libs/definitions';
 import { withInfiniteScroll } from '@/hoc/InfiniteScroll';
 import withHorizontalLayout from '@/hoc/withHorizontalLayout';
@@ -23,7 +24,11 @@ const SearchCardList = ({ data }: MovieListProps) => {
       </div>
       <div className="flex flex-col gap-4">
         {data.map((card) => (
-          <div key={card.id} className="my-2 flex gap-4 overflow-hidden py-3">
+          <Link
+            href={`/movies/${card.id}`}
+            key={card.id}
+            className="my-2 flex gap-4 overflow-hidden py-3"
+          >
             <div className="relative flex-shrink-0 bg-slate-700">
               <ImageWrapper
                 src={card.backdrop_path}
@@ -34,7 +39,7 @@ const SearchCardList = ({ data }: MovieListProps) => {
               />
             </div>
             <CardInfo title={card.title} description={card.overview} />
-          </div>
+          </Link>
         ))}
       </div>
     </div>
