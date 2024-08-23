@@ -10,7 +10,7 @@ const SignOutButton = () => {
       onClick={() => signOut()}
     >
       Sign Out
-      <BorderEffect utility="group" event="hover" borderColor="white" />
+      <BorderEffect borderColor="white" />
     </button>
   );
 };
