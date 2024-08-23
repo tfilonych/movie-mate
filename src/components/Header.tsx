@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
-import Logo from './Logo';
+import LogoIcon from '@/assets/icons/logo.svg';
 import Navigation from './Navigation';
 import SignOutButton from './SignOutButton';
 import BorderEffect from './BorderEffect';
@@ -39,7 +39,7 @@ const Header = () => {
     <header className="relative flex max-h-14 flex-col items-center p-4 sm:p-9 md:flex-row md:justify-between">
       <div className="flex w-full justify-between md:w-auto">
         <Link href="/">
-          <Logo />
+          <LogoIcon />
         </Link>
         <button
           onClick={handleClick}
@@ -65,7 +65,7 @@ const Header = () => {
       </div>
 
       <div
-        className={`relative z-10 w-screen flex-1 items-center bg-slate-800/80 transition-transform duration-300 md:static md:flex md:w-auto md:transform-none ${isOpen ? 'translate-x-0 transform' : '-translate-x-full transform'}`}
+        className={`relative z-10 w-screen flex-1 items-center bg-slate-800/80 transition-transform duration-300 sm:bg-transparent md:static md:flex md:w-auto md:transform-none ${isOpen ? 'translate-x-0 transform' : '-translate-x-full transform'}`}
         ref={ref}
       >
         <Navigation setIsOpen={setIsOpen} />

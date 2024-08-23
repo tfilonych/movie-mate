@@ -1,29 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useDebouncedCallback } from 'use-debounce';
-import { useSearchParams, usePathname, useRouter } from 'next/navigation';
-import BorderEffect from '../BorderEffect';
+import { useState, ChangeEvent } from 'react';
+import { useRouter } from 'next/navigation';
+import SearchIcon from '@/assets/icons/search_icon.svg';
 
 const Search = ({ placeholder }: { placeholder: string }) => {
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
-  const { replace, push } = useRouter();
-  const [query, setQuery] = useState(searchParams.get('query') || '');
-
-  const handleSearch = useDebouncedCallback((query: string) => {
-    const params = new URLSearchParams(searchParams);
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-    query ? params.set('query', query) : params.delete('query');
-
-    replace(`${pathname}?${params.toString()}`);
-  }, 300);
-
-  const handleButtonClick = () => {
-    if (query.trim()) {
-      push(`/search?query=${query.trim()}`);
-    }
-  };
+  const { push } = useRouter();
+  const [query, setQuery] = useState('');
+  const [isFocused, setIsFocused] = useState(false);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && query.trim()) {
@@ -31,36 +15,36 @@ const Search = ({ placeholder }: { placeholder: string }) => {
     }
   };
 
-  useEffect(() => {
-    // This ensures that the search query is synced with the URL params
-    if (searchParams.get('query') !== query) {
-      setQuery(searchParams.get('query') || '');
-    }
-  }, [searchParams, query]);
+  const onBlurHandler = () => {
+    setQuery('');
+    setIsFocused(false);
+  };
+
+  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value);
+  };
 
   return (
-    <div className="group relative flex flex-1 flex-shrink-0 rounded-md border-2">
-      <label htmlFor="search" className="sr-only">
-        Search
-      </label>
+    <div className="relative">
       <input
-        id="search"
-        className="peer block w-full rounded-md py-[9px] pl-10 pr-0 text-sm text-black outline-none placeholder:text-gray-500"
+        type="text"
         placeholder={placeholder}
-        onChange={(e) => {
-          setQuery(e.target.value);
-          handleSearch(e.target.value);
-        }}
-        onKeyDown={handleKeyDown}
         value={query}
+        onChange={onChangeHandler}
+        onKeyDown={handleKeyDown}
+        onFocus={() => setIsFocused(true)}
+        onBlur={onBlurHandler}
+        className={`absolute inset-0 z-10 m-auto h-12 w-12 cursor-pointer rounded-full bg-red-600 px-6 text-white placeholder-white outline-none transition-all duration-1000 ease-in-out ${
+          isFocused ? 'w-72 cursor-text opacity-100' : 'opacity-0'
+        } focus:w-72 focus:opacity-100`}
       />
-      <BorderEffect />
-      <button
-        onClick={handleButtonClick}
-        className="text-md absolute bottom-0 right-0 top-0 transform rounded-md bg-red-600 px-8 text-white hover:bg-red-500"
+      <div
+        className={`absolute inset-0 m-auto h-14 w-14 cursor-pointer rounded-full bg-red-600 transition-all duration-1000 ease-in-out hover:cursor-pointer ${
+          isFocused ? '-right-172 h-1 w-1 opacity-0' : 'opacity-100'
+        }`}
       >
-        Search
-      </button>
+        <SearchIcon />
+      </div>
     </div>
   );
 };

@@ -4,8 +4,8 @@ export const img_URL = {
   vertical: process.env.NEXT_PUBLIC_TMDB_API_IMG,
 };
 export const default_URL = {
-  horizontal: '/default_horizontal.jpg',
-  vertical: '/default_vertical.jpg',
+  horizontal: '/horizontal_default.jpeg',
+  vertical: '/vertical_default.jpeg',
 };
 export const imgSize = {
   horizontal: {

@@ -27,7 +27,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${o_sans.className} w-full bg-slate-800 text-white`}>
+      <body
+        className={`${o_sans.className} h-screen w-full bg-slate-800 bg-gradient-to-b from-slate-950 via-slate-700 to-slate-950 text-white`}
+      >
         <ReactQueryProvider>
           <AuthProvider>
             <Header />
