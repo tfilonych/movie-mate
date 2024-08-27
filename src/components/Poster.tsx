@@ -7,7 +7,7 @@ function Poster() {
     <div className="relative h-96 w-full">
       <Image
         alt="poster"
-        src="/poster.jpeg"
+        src="/poster_optimized.webp"
         fill
         className="absolute left-0 top-0 h-full w-full object-cover brightness-50"
       />
