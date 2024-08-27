@@ -1,4 +1,4 @@
-name: Vercel Deployment
+name: Deploy to Vercel
 
 on:
   push:
@@ -6,11 +6,10 @@ on:
       - main
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Code
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Install Node.js
@@ -18,14 +17,16 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: npm install
 
-      - name: Build the Project
+      - name: Build
+        env:
+          TMDB_API: ${{ secrets.TMDB_API }}
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
         run: npm run build
 
-      - name: Install Vercel CLI
-        run: npm install --global vercel
-
       - name: Deploy to Vercel
-        run: vercel --prod --token=${{ secrets.VERCEL_TOKEN }} --org-id=${{ secrets.VERCEL_ORG_ID }} --project-id=${{ secrets.VERCEL_PROJECT_ID }}
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: vercel --prod --confirm
