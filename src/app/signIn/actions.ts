@@ -1,13 +1,6 @@
 import { signIn } from 'next-auth/react';
-import { signinSchema } from './signinSchema';
-
-type FormState = {
-  errors?: {
-    username?: string[];
-    password?: string[];
-    _form?: string[];
-  };
-};
+import { signinSchema } from '../../libs/schemas';
+import { FormState } from '@/libs/definitions';
 
 export const signin = async (
   prevState: FormState | undefined,
@@ -15,7 +8,7 @@ export const signin = async (
 ): Promise<FormState> => {
   // Validate form data
   const validatedFields = signinSchema.safeParse({
-    username: formData.get('username'),
+    email: formData.get('email'),
     password: formData.get('password'),
   });
 
@@ -29,7 +22,7 @@ export const signin = async (
   // Attempt to sign in
   try {
     const result = await signIn('credentials', {
-      username: validatedFields.data.username,
+      email: validatedFields.data.email,
       password: validatedFields.data.password,
       callbackUrl: '/movies',
     });

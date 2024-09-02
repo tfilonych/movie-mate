@@ -100,3 +100,12 @@ export type MovieDetails = {
   vote_average: number;
   vote_count: number;
 };
+
+export type FormState = {
+  errors?: {
+    name?: string[];
+    email?: string[];
+    password?: string[];
+    _form?: string[];
+  };
+};
