@@ -6,7 +6,10 @@ type field = { id: string; type: string; placeholder: string };
 type FormProps = {
   title: string;
   fields: field[];
-  action: () => Promise<FormState>;
+  action: (
+    prevState: FormState | undefined,
+    formData: FormData,
+  ) => Promise<FormState>;
   children: ReactNode;
 };
 
