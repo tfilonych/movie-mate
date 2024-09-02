@@ -1,8 +1,8 @@
-import type { NextAuthOptions } from 'next-auth';
+import { compare } from 'bcryptjs';
+import { NextAuthOptions } from 'next-auth';
 import GitHubProvider from 'next-auth/providers/github';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import prisma from '@/libs/prisma';
-import { compare } from 'bcryptjs';
 import { User } from '.prisma/client';
 
 export const options: NextAuthOptions = {
@@ -21,6 +21,7 @@ export const options: NextAuthOptions = {
           const user: User | null = await prisma.user.findUnique({
             where: { email: email },
           });
+
           if (!user || !user.password) {
             throw new Error('No user found with this email');
           }
@@ -29,6 +30,7 @@ export const options: NextAuthOptions = {
           if (!isValid) {
             throw new Error('Invalid password');
           }
+
           return user;
         } catch {
           return null;
