@@ -4,10 +4,9 @@ services:
     image: postgres:15-alpine
     restart: always
     environment:
-      - POSTGRES_DATABASE=${POSTGRES_DATABASE}
-      - POSTGRES_URL=${POSTGRES_URL}
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DATABASE}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
       - '5432:5432'
     volumes:
@@ -15,6 +14,8 @@ services:
 
   app:
     build: .
+    environment:
+      POSTGRES_URL: ${POSTGRES_URL}
     volumes:
       - ./src:/app/src
       - ./public:/app/public
@@ -23,7 +24,6 @@ services:
       - ./.env.local:/app/.env.local
     ports:
       - '3000:3000'
-    command: npm run dev
     depends_on:
       - db
 
