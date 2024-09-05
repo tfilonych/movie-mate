@@ -17,7 +17,7 @@ export const imageSettings = {
     width: 342,
     aspectRatio: '2/3',
   },
-  portrait_sm: {
+  portraitSm: {
     width: 185,
     aspectRatio: '2/3',
   },

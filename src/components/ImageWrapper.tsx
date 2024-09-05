@@ -1,9 +1,11 @@
+'use client';
+
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 import Image from 'next/image';
 import { img_URL, default_URL, imageSettings } from '@/config';
 
 type Layout = 'vertical' | 'horizontal';
-type Orientation = 'landscape' | 'portrait' | 'portrait_sm';
+type Orientation = 'landscape' | 'portrait' | 'portraitSm';
 type ImageWrapperProps = {
   src: string | StaticImport;
   orientation: Orientation;
@@ -17,7 +19,7 @@ const ImageWrapper = ({
   layout = 'vertical',
   orientation = 'landscape',
 }: ImageWrapperProps) => {
-  const { aspectRatio, width } = imageSettings[orientation];
+  const { width } = imageSettings[orientation];
   const { width: thubnail } = imageSettings.thumbnail;
   const imgUrl = src
     ? `${img_URL.responsive}/w${width}${src}`
@@ -26,6 +28,18 @@ const ImageWrapper = ({
   const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     e.currentTarget.src = default_URL[layout];
   };
+  /* fix for dynamic tailwind classes */
+  const aspectRatios = {
+    portrait: `aspect-portrait`,
+    landscape: 'aspect-landscape',
+    portraitSm: 'aspect-portraitSm',
+  };
+  const Elwidth = {
+    portrait: `w-portrait`,
+    landscape: 'w-landscape',
+    portraitSm: 'w-portraitSm',
+  };
+  /*  end   */
 
   return (
     <div
@@ -33,7 +47,7 @@ const ImageWrapper = ({
         backgroundImage: `url(${bgImg})`,
         backgroundSize: '100% 100%',
       }}
-      className={`relative flex aspect-[${aspectRatio}] h-auto flex-shrink-0 w-[${width}px] justify-center`}
+      className={`${aspectRatios[orientation]} relative flex h-auto flex-shrink-0 ${Elwidth[orientation]} justify-center`}
     >
       <Image
         alt={title}

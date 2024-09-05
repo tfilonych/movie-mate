@@ -22,7 +22,7 @@ const MovieList = ({ data }: MovieListProps) => {
           >
             <ImageWrapper
               src={movie.poster_path}
-              orientation="portrait_sm"
+              orientation="portraitSm"
               title={movie.title}
               layout="vertical"
             />
