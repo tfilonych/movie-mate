@@ -11,11 +11,6 @@ type MovieListProps = {
   data: Movie[];
 };
 
-const imgSize = {
-  width: 355,
-  height: 200,
-};
-
 const SearchCardList = ({ data }: MovieListProps) => {
   return (
     <div className="container mx-auto px-4">
@@ -27,17 +22,14 @@ const SearchCardList = ({ data }: MovieListProps) => {
           <Link
             href={`/movies/${card.id}`}
             key={card.id}
-            className="my-2 flex gap-4 overflow-hidden py-3"
+            className="my-2 flex w-full gap-4 overflow-hidden py-3"
           >
-            <div className="relative flex-shrink-0 bg-slate-700">
-              <ImageWrapper
-                src={card.backdrop_path}
-                width={imgSize.width}
-                height={imgSize.height}
-                title={card.title}
-                layout="horizontal"
-              />
-            </div>
+            <ImageWrapper
+              src={card.backdrop_path}
+              orientation="landscape"
+              title={card.title}
+              layout="horizontal"
+            />
             <CardInfo title={card.title} description={card.overview} />
           </Link>
         ))}

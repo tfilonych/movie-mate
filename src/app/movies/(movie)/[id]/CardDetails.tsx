@@ -10,14 +10,11 @@ const CardDetails = async ({ id }: { id: string }) => {
 
   return (
     <div className="flex w-full flex-col items-center justify-center gap-10 sm:flex-row">
-      <div className="relative flex w-full justify-center sm:w-80">
-        <ImageWrapper
-          src={movie.poster_path}
-          width={450}
-          height={500}
-          layout={'vertical'}
-        />
-      </div>
+      <ImageWrapper
+        src={movie.poster_path}
+        orientation="portrait"
+        layout="vertical"
+      />
       <div className="flex w-4/5 flex-col gap-4">
         <div className="text-3xl">{movie.title}</div>
         <div>{movie.overview}</div>

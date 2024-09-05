@@ -15,7 +15,12 @@ const useInfiniteScrollLogic = <T,>({
   totalPages,
   initialQuery,
 }: Omit<InfiniteScrollProps<T>, 'WrappedComponent'>) => {
-  const [ref, inView] = useInView();
+  const [ref, inView] = useInView({
+    threshold: 0.1,
+    triggerOnce: false,
+    root: null,
+    rootMargin: '0px -50px 0px 0px', // Adjust this value as needed
+  });
 
   const {
     data,

@@ -1,43 +1,49 @@
-'use client';
-import { useState } from 'react';
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 import Image from 'next/image';
-import { img_URL, default_URL } from '@/config';
+import { img_URL, default_URL, imageSettings } from '@/config';
 
 type Layout = 'vertical' | 'horizontal';
+type Orientation = 'landscape' | 'portrait' | 'portrait_sm';
 type ImageWrapperProps = {
   src: string | StaticImport;
-  width: number;
-  height: number;
-  title?: string;
+  orientation: Orientation;
   layout: Layout;
+  title?: string;
 };
 
 const ImageWrapper = ({
   src,
-  width,
-  height,
   title = 'some default title',
   layout = 'vertical',
+  orientation = 'landscape',
 }: ImageWrapperProps) => {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const { aspectRatio, width } = imageSettings[orientation];
+  const { width: thubnail } = imageSettings.thumbnail;
+  const imgUrl = src
+    ? `${img_URL.responsive}/w${width}${src}`
+    : default_URL[layout];
+  const bgImg = `${img_URL.responsive}/w${thubnail}` + src;
   const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     e.currentTarget.src = default_URL[layout];
   };
-  const url = src ? `${img_URL[layout]}${src}` : default_URL[layout];
 
   return (
-    <Image
-      alt={title}
-      width={width}
-      height={height}
-      src={url}
-      onLoad={() => setIsLoaded(true)}
-      onError={handleError}
-      className={`transform transition-all duration-200 ease-in-out hover:scale-105 ${
-        isLoaded ? '' : 'blur'
-      }`}
-    />
+    <div
+      style={{
+        backgroundImage: `url(${bgImg})`,
+        backgroundSize: '100% 100%',
+      }}
+      className={`relative flex aspect-[${aspectRatio}] h-auto flex-shrink-0 w-[${width}px] justify-center`}
+    >
+      <Image
+        alt={title}
+        fill
+        src={imgUrl}
+        sizes="(max-width: 768px) 100vw, 50vw"
+        onError={handleError}
+        className={`duration-400 transform transition-all ease-in-out hover:scale-105`}
+      />
+    </div>
   );
 };
 

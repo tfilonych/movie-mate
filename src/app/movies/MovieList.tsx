@@ -11,26 +11,21 @@ type MovieListProps = {
   data: Movie[];
 };
 
-const imgSize = {
-  width: 300,
-  height: 250,
-};
-
 const MovieList = ({ data }: MovieListProps) => {
   return (
     <>
       {data.map((movie) => (
         <Link href={`/movies/${movie.id}`} key={movie.id}>
-          <div key={movie.id} className="flex cursor-pointer flex-col">
-            <div className="relative bg-slate-700">
-              <ImageWrapper
-                src={movie.poster_path}
-                width={imgSize.width}
-                height={imgSize.height}
-                title={movie.title}
-                layout="vertical"
-              />
-            </div>
+          <div
+            key={movie.id}
+            className="flex w-[185px] cursor-pointer flex-col overflow-hidden"
+          >
+            <ImageWrapper
+              src={movie.poster_path}
+              orientation="portrait_sm"
+              title={movie.title}
+              layout="vertical"
+            />
             <CardInfo title={movie.title} />
           </div>
         </Link>
