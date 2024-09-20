@@ -2,10 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@font-face {
+  font-family: 'StarJedi';
+  src: url('/Starjhol.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'StarJedi', sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -16,16 +21,84 @@
   }
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+/* globals.css */
+@keyframes float-up {
+  0% {
+    transform: translateY(0);
   }
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-  /* Hide scrollbar for IE, Edge and Firefox */
-  .no-scrollbar {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+  100% {
+    transform: translateY(-175vh);
   }
 }
+
+@keyframes sway-left-to-right {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes sway-right-to-left {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+/* globals.css */
+
+/* TODO: move to tailwind */
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  text-shadow: 2px 2px 2px #251022;
+  background-image: url('/sphera.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: #030014;
+}
+a.group,
+button.group {
+  transition: box-shadow 0.3s ease-in-out;
+  border: none;
+  border-radius: 10px;
+  box-shadow:
+    inset 0px 1px 2px #d0ccec,
+    inset 0px 6px 4px #5d51ad,
+    inset 0px 4px 8px #322490,
+    inset 0px 8px 16px #34249f;
+  transition: all 5s ease-in-out;
+  background-color: transparent;
+
+  &:hover {
+    transition: all 5s ease-in-out;
+    box-shadow: 0 0 2em 0.2em hsl(186 100% 69%);
+    box-shadow: 0 0 2em 0.2em #7b89eb;
+  }
+}
+img:hover {
+  box-shadow: 0 0 2em 0.2em hsl(186 100% 69%);
+  box-shadow:
+    0px 0px 2px #c0f5fb,
+    0px 1px 4px #78edfa,
+    0px 2px 6px #54ccd9,
+    0px 3px 10px #41c5d4;
+  box-shadow:
+    0px 0px 2px #a6ace1,
+    0px 1px 4px #8995f1,
+    0px 2px 6px #7e8ae9,
+    0px 3px 10px #7b89eb;
+  background-color: transparent;
+}
+svg text {
+  font-variant: 'Merienda';
+}
+tspan {
+  text-shadow: 1px 1px #8a4bea;
+}
+/* TODO: move to tailwind  end */

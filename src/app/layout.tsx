@@ -1,23 +1,30 @@
+import React from 'react';
 import type { Metadata } from 'next';
-import { Open_Sans } from 'next/font/google';
+import { Titillium_Web } from 'next/font/google';
 import ReactQueryProvider from '@/providers/ReactQueryProvider';
+import { Toaster } from 'react-hot-toast';
 import './globals.css';
 import Header from '@/components/Header';
 import AuthProvider from '@/providers/AuthProvider';
+import Stars from '@/components/Stars';
 
-const o_sans = Open_Sans({
+const titillium = Titillium_Web({
   weight: '400',
   subsets: ['latin'],
-  style: 'italic',
 });
+// const o_sans = Open_Sans({
+//   weight: '400',
+//   subsets: ['latin'],
+//   style: 'italic',
+// });
 
 export const metadata: Metadata = {
   icons: {
     icon: '/favicon.ico',
   },
-  title: 'MovieMate | Movies, TV Shows and Episods',
+  title: 'MovieSpace | Movies, TV Shows and Episodes',
   description:
-    'MovieMate - application that allow you to find your favorite movie by one click',
+    'MovieSpace - application that allows you to find your favorite movie with one click',
 };
 
 export default function RootLayout({
@@ -27,9 +34,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${o_sans.className} h-screen w-full bg-slate-800 bg-gradient-to-b from-slate-950 via-slate-700 to-slate-950 text-white`}
-      >
+      <body className={`${titillium.className} h-screen w-full text-white`}>
+        <Stars />
+        <Toaster position="top-right" />
         <ReactQueryProvider>
           <AuthProvider>
             <Header />

@@ -12,7 +12,7 @@ type NavigationProps = {
 const navLinks = [
   { href: '/movies', title: 'Movies' },
   { href: '/shows', title: 'TV Shows' },
-  { href: '/episods', title: 'Episods' },
+  { href: '/episodes', title: 'Episodes' },
 ];
 
 const Navigation = ({ setIsOpen }: NavigationProps) => {
@@ -26,14 +26,14 @@ const Navigation = ({ setIsOpen }: NavigationProps) => {
 
   return (
     <nav>
-      <ul className="flex flex-col gap-4 p-4 text-xl md:flex-row md:gap-6">
+      <ul className="text-bold flex flex-col gap-4 p-4 text-xl md:flex-row md:gap-6 md:pl-32">
         {navLinks.map((link) => (
           <li key={link.href}>
             <Link
               href={link.href}
-              className={`relative inline-block transition-all duration-500 ease-in-out ${
-                isActive(link.href) ? 'text-red-500' : ''
-              } after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:scale-x-0 after:transform after:bg-red-500 after:transition-transform after:duration-500 after:ease-in-out hover:after:scale-x-100`}
+              className={`relative inline-block text-2xl transition-all duration-500 ease-in-out ${
+                isActive(link.href) ? 'text-brand' : ''
+              } after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:scale-x-0 after:transform after:bg-brand after:transition-transform after:duration-500 after:ease-in-out hover:after:scale-x-100`}
             >
               {link.title}
             </Link>

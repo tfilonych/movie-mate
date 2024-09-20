@@ -15,22 +15,20 @@ export const options: NextAuthOptions = {
       name: 'Credentials',
       // @ts-expect-error @typescript-eslint/ban-ts-comment
       async authorize(credentials: { email: string; password: string }) {
-        // Get the user by email
         const { email, password } = credentials;
         try {
           const user: User | null = await prisma.user.findUnique({
             where: { email: email },
           });
-
+          console.log('user is ');
+          console.log(user);
           if (!user || !user.password) {
             throw new Error('No user found with this email');
           }
-          //Validate the password
           const isValid = compare(password, user.password);
           if (!isValid) {
             throw new Error('Invalid password');
           }
-
           return user;
         } catch {
           return null;

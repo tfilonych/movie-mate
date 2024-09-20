@@ -21,7 +21,7 @@ const CarouselContainer = async ({
   });
 
   return (
-    <>
+    <div className="mx-4">
       <h2 className="mb-4 text-xl font-bold">{title}</h2>
       <Suspense key={currentPage} fallback={<div>Loading...</div>}>
         <CarouselCardList
@@ -32,7 +32,7 @@ const CarouselContainer = async ({
           totalPages={total_pages}
         />
       </Suspense>
-    </>
+    </div>
   );
 };
 

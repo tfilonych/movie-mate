@@ -18,7 +18,7 @@ const Form = ({ title, fields, action, children }: FormProps) => {
 
   return (
     <div className="mt-36 flex items-center justify-center">
-      <div className="w-96 rounded border-2 border-solid border-slate-600 bg-slate-800 p-5 shadow-md">
+      <div className="w-96 rounded border-2 border-solid p-5 shadow-md">
         <h2 className="mb-4 text-center text-2xl font-bold text-white">
           {title}
         </h2>
@@ -33,14 +33,14 @@ const Form = ({ title, fields, action, children }: FormProps) => {
                 placeholder={field.placeholder}
               />
               {state.errors?.[field.id as keyof typeof state.errors] && (
-                <p className="mt-1 text-sm text-red-500">
+                <p className="mt-1 text-sm text-brand">
                   {state.errors[field.id as keyof typeof state.errors]?.[0]}
                 </p>
               )}
             </div>
           ))}
           {state.errors?._form && (
-            <p className="mb-2 text-sm text-red-500">{state.errors._form[0]}</p>
+            <p className="mb-2 text-sm text-brand">{state.errors._form[0]}</p>
           )}
           {children}
         </form>

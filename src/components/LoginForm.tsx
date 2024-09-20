@@ -27,7 +27,7 @@ const LoginForm = () => {
         <div className="flex justify-between">
           Don&apos;t have an account yet?
           <Link href="register">
-            <span className="cursor-pointer text-red-500 underline underline-offset-2">
+            <span className="cursor-pointer text-brand underline underline-offset-2">
               Sign Up here
             </span>
           </Link>

@@ -19,7 +19,7 @@ const useInfiniteScrollLogic = <T,>({
     threshold: 0.1,
     triggerOnce: false,
     root: null,
-    rootMargin: '0px -50px 0px 0px', // Adjust this value as needed
+    rootMargin: '0px -50px 0px 0px',
   });
 
   const {

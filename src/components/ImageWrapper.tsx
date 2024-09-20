@@ -47,7 +47,7 @@ const ImageWrapper = ({
         backgroundImage: `url(${bgImg})`,
         backgroundSize: '100% 100%',
       }}
-      className={`${aspectRatios[orientation]} relative flex h-auto flex-shrink-0 ${Elwidth[orientation]} justify-center`}
+      className={`${aspectRatios[orientation]} relative flex h-auto flex-shrink-0 rounded-xl border-2 border-borderColor shadow-2xl ${Elwidth[orientation]} justify-center`}
     >
       <Image
         alt={title}
@@ -55,7 +55,7 @@ const ImageWrapper = ({
         src={imgUrl}
         sizes="(max-width: 768px) 100vw, 50vw"
         onError={handleError}
-        className={`duration-400 transform transition-all ease-in-out hover:scale-105`}
+        className="rounded-xl"
       />
     </div>
   );

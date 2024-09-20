@@ -6,7 +6,6 @@ import { useSession } from 'next-auth/react';
 import LogoIcon from '@/assets/icons/logo.svg';
 import Navigation from './Navigation';
 import SignOutButton from './SignOutButton';
-import BorderEffect from './BorderEffect';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,10 +35,10 @@ const Header = () => {
   }, [ref]);
 
   return (
-    <header className="relative flex max-h-14 flex-col items-center p-4 sm:p-9 md:flex-row md:justify-between">
+    <header className="relative flex max-h-14 flex-col items-center p-4 sm:p-12 md:flex-row md:justify-between">
       <div className="flex w-full justify-between md:w-auto">
         <Link href="/">
-          <LogoIcon />
+          <LogoIcon className="font-starwars" />
         </Link>
         <button
           onClick={handleClick}
@@ -65,7 +64,7 @@ const Header = () => {
       </div>
 
       <div
-        className={`relative z-10 w-screen flex-1 items-center bg-slate-800/80 transition-transform duration-300 sm:bg-transparent md:static md:flex md:w-auto md:transform-none ${isOpen ? 'translate-x-0 transform' : '-translate-x-full transform'}`}
+        className={`relative z-10 w-screen flex-1 items-center bg-slate-800/70 transition-transform duration-300 sm:bg-transparent md:static md:flex md:w-auto md:transform-none ${isOpen ? 'translate-x-0 transform' : '-translate-x-full transform'}`}
         ref={ref}
       >
         <Navigation setIsOpen={setIsOpen} />
@@ -75,9 +74,8 @@ const Header = () => {
           ) : (
             <Link
               href="/signIn"
-              className="group relative px-6 py-2 text-lg text-white"
+              className="group relative px-7 py-3 text-lg text-white"
             >
-              <BorderEffect borderColor="white" />
               Sign In
             </Link>
           )}

@@ -58,6 +58,8 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'react/prop-types': 'off',
     'prettier/prettier': 'warn',
+    'object-shorthand': 'off',
+    'no-unused-vars': 'off',
   },
   settings: {
     react: {
